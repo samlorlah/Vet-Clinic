@@ -189,3 +189,14 @@ JOIN species ON species.id = animals.species_id
 WHERE vets.name = 'Maisy Smith'
 GROUP BY species.name
 ORDER BY visits DESC LIMIT 1;
+
+-- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+-- remove the not null from the age column 
+ALTER TABLE owners ALTER COLUMN age DROP NOT NULL;
+
+-- Create Index to reduce query time
+CREATE INDEX animals_id_index ON visits(animal_id);
+CREATE INDEX vets_id_index ON visits(vet_id);
+CREATE INDEX email_id_index ON owners(email);
